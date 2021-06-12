@@ -1,0 +1,118 @@
+<div class="example-container">
+  <div class="form-container">
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+
+      <mat-card class="form-field form-field-card">Front-End Developer Form</mat-card>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" required>
+        <mat-error *ngIf="loginForm.controls.name.touched && loginForm.controls.name.invalid">
+          <span *ngIf="loginForm.controls.name.errors.required">This field is mandatory.</span>
+          <span *ngIf="loginForm.controls.name.errors.pattern">Please , input a valid name.</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Surname</mat-label>
+        <input matInput formControlName="surname" required>
+        <mat-error *ngIf="loginForm.controls.surname.touched && loginForm.controls.surname.invalid">
+          <span *ngIf="loginForm.controls.surname.errors.required">This field is mandatory.</span>
+          <span *ngIf="loginForm.controls.surname.errors.pattern">Please , input a valid name.</span>
+        </mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field class="form-field" appearance="outline">
+        Birthday
+        <input matInput [matDatepicker]="picker" formControlName="birthday" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="loginForm.controls.birthday.touched && loginForm.controls.birthday.invalid">
+          <span *ngIf="loginForm.controls.birthday.errors.required">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+
+
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> E-mail</mat-label>
+        <input matInput formControlName="email" required>
+        <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+          <span *ngIf="loginForm.controls.email.errors.required">This field is mandatory.</span>
+          <span *ngIf="loginForm.controls.email.errors.pattern">This field is invalid.</span>
+        </mat-error>
+      </mat-form-field>
+
+      <hr>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Select Framework</mat-label>
+        <mat-select  [(ngModel)]="selectedValue" formControlName="selectFramework">
+          <mat-option *ngFor="let framework of frameworks" [value]="framework" (click)="selectFramework()">
+            {{framework}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="loginForm.controls.selectFramework.touched && loginForm.controls.selectFramework.invalid">
+          <span *ngIf="loginForm.controls.selectFramework.errors.required">This field is mandatory.</span>
+        </mat-error>
+      </mat-form-field>
+
+
+
+        <mat-form-field class="form-field" appearance="outline" >
+          <mat-label>Select framework version</mat-label>
+          <mat-select formControlName="selectFrameworkVersion" [disabled]="selectedValue === ''">
+            <mat-option *ngFor="let version of versions" [value]="version">
+              {{version}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="loginForm.controls.selectFrameworkVersion.touched && loginForm.controls.selectFrameworkVersion.invalid">
+            <span *ngIf="loginForm.controls.selectFrameworkVersion.errors.required">This field is mandatory.</span>
+          </mat-error>
+        </mat-form-field>
+
+
+      <hr>
+
+
+
+
+      <mat-card class="form-field form-field-card">Hobbies</mat-card>
+
+
+        <div class="form-field" formArrayName="hobbies">
+          <div class="row" *ngFor="let hobbiesControl of controls; let i = index" [formGroupName]="i">
+
+
+            <div class="form-field-hobby">
+            <mat-form-field class="form-field-hobby-name" appearance="outline">
+              <mat-label> Hobby</mat-label>
+              <input matInput formControlName="hobby" required>
+            </mat-form-field>
+
+            <mat-form-field  class="form-field-hobby-duration" appearance="outline">
+              <mat-label> Duration</mat-label>
+              <input matInput formControlName="duration" required>
+            </mat-form-field>
+
+              <button *ngIf="i >= 1" class="btn-delete" mat-fab color="primary" aria-label="Example" (click)="onDeleteHobby(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+      <button class="btn-add" mat-raised-button color="primary" type="button" (click)="onAddHobby()">Add Hobby</button>
+
+
+      <button class="btn-send" mat-raised-button color="warn" type="submit" [disabled]="!loginForm.valid">Send</button>
+
+    </form>
+
+  </div>
+</div>

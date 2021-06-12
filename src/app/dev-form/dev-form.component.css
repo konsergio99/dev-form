@@ -1,0 +1,64 @@
+.example-container{
+  text-align: center;
+}
+
+.form-container{
+  width: 400px;
+  margin: 100px auto 0;
+  padding: 10px;
+  background: #f1f6f4;
+  border: 2px double #e7f5ee;
+  border-radius: 3%;
+}
+
+.form-field-card{
+  background-color: #dbefe7;
+  margin-bottom: 3%;
+}
+
+
+
+.form-field-hobby-name{
+  width: 150px; margin-top: 10px
+}
+
+.form-field-hobby-duration{
+  width: 150px ;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.form-field{
+  display: block
+}
+
+.form-field-hobby{
+  display: flex;
+}
+
+hr{
+  margin-bottom: 5%;
+}
+
+.btn-delete{
+  margin-left: 30px;
+  margin-top: 25px;
+  height:30px !important;
+  width:30px !important;
+  font-size:30px !important;
+}
+
+.btn-add{
+  width: 100%;
+  margin-top: -20px;
+}
+
+.btn-send{
+  width: 100%;
+  margin-top: 20px;
+}
+
+.mat-icon{
+  margin-top: -30px;
+}
+
